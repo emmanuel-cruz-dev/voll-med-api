@@ -1,7 +1,10 @@
 # 🏥 Voll - Sistema de Gestión Médica
 
 ## 📋 Descripción del Proyecto
-**Voll** es una API REST desarrollada como backend para una consultora médica ficticia. El sistema permite la gestión completa de médicos, pacientes y consultas.  
+**Voll** es una API REST desarrollada como backend para una consultora médica ficticia. El sistema permite la gestión completa de: 
+- **Médicos** - Registro, consulta, actualización y eliminación de profesionales médicos.  
+- **Pacientes** - Administración de datos de pacientes de la clínica.  
+- **Consultas** - Programación y gestión de citas médicas entre pacientes y médicos.  
 La aplicación implementa operaciones CRUD completas (Create, Read, Update, Delete) para todas las entidades, proporcionando una solución integral para la administración de una clínica médica.
 
 ## 🛠️ Tecnologías
