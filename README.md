@@ -1,6 +1,6 @@
-# 📚 API Voll
+# 🏥 Voll - Sistema de Gestión Médica
 
-Aplicación desarrollada en Java.
+Voll es una API REST desarrollada como backend para una consultora médica ficticia. El sistema permite la gestión completa de médicos, pacientes y consultas.
 
 ## 🛠️ Tecnologías
 - **Java con Spring Boot**: Framework para la configuración y gestión de dependencias.  
