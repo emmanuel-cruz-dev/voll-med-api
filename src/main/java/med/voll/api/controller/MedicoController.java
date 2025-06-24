@@ -37,4 +37,8 @@ public class MedicoController {
         Page<DatosListaMedico> pagina = repository.findAll(paginacion).map(DatosListaMedico::new);
         return pagedResourcesAssembler.toModel(pagina, datosListaMedicoModelAssembler);
     }
+
+    @Transactional
+    @PutMapping
+    public void actualizar(@RequestBody @Valid DatosRegistroMedico datos){}
 }
