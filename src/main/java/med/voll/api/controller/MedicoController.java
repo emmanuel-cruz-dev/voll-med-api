@@ -34,7 +34,7 @@ public class MedicoController {
 
     @GetMapping
     public PagedModel<EntityModel<DatosListaMedico>> listar(@PageableDefault(size = 10, sort = {"nombre"}) Pageable paginacion){
-        Page<DatosListaMedico> pagina = repository.findAll(paginacion).map(DatosListaMedico::new);
+        Page<DatosListaMedico> pagina = repository.findAllByActivoTrue(paginacion).map(DatosListaMedico::new);
         return pagedResourcesAssembler.toModel(pagina, datosListaMedicoModelAssembler);
     }
 
@@ -48,6 +48,7 @@ public class MedicoController {
     @Transactional
     @DeleteMapping("/{id}")
     public void eliminar(@PathVariable Long id){
-        repository.deleteById(id);
+        var medico = repository.getReferenceById(id);
+        medico.eliminar();
     }
 }
