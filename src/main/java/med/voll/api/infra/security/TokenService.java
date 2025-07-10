@@ -3,16 +3,18 @@ package med.voll.api.infra.security;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTCreationException;
+import med.voll.api.domain.usuario.Usuario;
 import org.springframework.stereotype.Service;
 
 @Service
 public class TokenService {
 
-    public String generarToken() {
+    public String generarToken(Usuario usuario) {
         try {
             var algoritmo = Algorithm.HMAC256("12345678");
             return JWT.create()
                     .withIssuer("API Voll.med")
+                    .withSubject(usuario.getLogin())
                     .sign(algoritmo);
         } catch (JWTCreationException exception) {
             throw new RuntimeException("Error al generar el token JWT", exception);
