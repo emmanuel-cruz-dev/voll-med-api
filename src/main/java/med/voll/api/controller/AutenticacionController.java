@@ -3,6 +3,7 @@ package med.voll.api.controller;
 import jakarta.validation.Valid;
 import med.voll.api.domain.usuario.DatosAutenticacion;
 import med.voll.api.domain.usuario.Usuario;
+import med.voll.api.infra.security.DatosTokenJWT;
 import med.voll.api.infra.security.TokenService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -27,9 +28,10 @@ public class AutenticacionController {
     @PostMapping
     public ResponseEntity iniciarSesion(@RequestBody @Valid DatosAutenticacion datos){
         try {
-            var token = new UsernamePasswordAuthenticationToken(datos.login(), datos.contrasena());
-            var autenticacion = manager.authenticate(token);
-            return ResponseEntity.ok(tokenService.generarToken((Usuario) autenticacion.getPrincipal()));
+            var AuthenticationToken = new UsernamePasswordAuthenticationToken(datos.login(), datos.contrasena());
+            var autenticacion = manager.authenticate(AuthenticationToken);
+            var tokenJWT = tokenService.generarToken((Usuario) autenticacion.getPrincipal());
+            return ResponseEntity.ok(new DatosTokenJWT(tokenJWT));
         } catch (Exception e) {
             System.out.println("❌ Error en autenticación: " + e.getMessage());
             e.printStackTrace();
