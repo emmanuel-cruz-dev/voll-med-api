@@ -1,7 +1,6 @@
 package med.voll.api.controller;
 
 import jakarta.validation.Valid;
-import med.voll.api.domain.consultas.DatosDetalleConsulta;
 import med.voll.api.domain.consultas.DatosReservaConsulta;
 import med.voll.api.domain.consultas.ReservaDeConsultas;
 import org.springframework.beans.factory.annotation.Autowired;
