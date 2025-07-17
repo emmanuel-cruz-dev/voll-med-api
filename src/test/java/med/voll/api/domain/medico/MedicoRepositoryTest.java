@@ -42,6 +42,16 @@ class MedicoRepositoryTest {
         assertThat(medicoLibre).isNull();
     }
 
+    @Test
+    @DisplayName("Debería devolver médico cuando el médico buscado está disponible en esa fecha")
+    void elegirMedicoAleatorioDisponibleEnLaFechaEscenario2() {
+        var lunesSiguienteALas10 = LocalDate.now().with(TemporalAdjusters.next(DayOfWeek.MONDAY)).atTime(10,0);
+        var medico = registrarMedico("Dr. Juan", "medico@gmail.com", "123456789", Especialidad.CARDIOLOGIA);
+
+        var medicoLibre = medicoRepository.elegirMedicoAleatorioDisponibleEnLaFecha(Especialidad.CARDIOLOGIA, lunesSiguienteALas10);
+        assertThat(medicoLibre).isEqualTo(medico);
+    }
+
     private void registrarConsulta(Medico medico, Paciente paciente, LocalDateTime fecha) {
         em.persist(new Consulta(null, medico, paciente, fecha, null));
     }
